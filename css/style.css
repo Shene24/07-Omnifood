@@ -269,7 +269,9 @@
 .section-testimonials {
   background-color: #fdf2e9;
   display: grid;
+  /* using num for making it more balanced  */
   grid-template-columns: 55fr 45fr;
+  /* it fixes the space between the pcis */
   align-items: center;
 }
 
@@ -308,6 +310,8 @@
   padding: 1.6rem;
 }
 
+/* img hover in 3 steps */
+/* when we skill up the img they are overflow the parent element */
 .gallery-item {
   overflow: hidden;
 }
@@ -315,9 +319,10 @@
 .gallery-item img {
   display: block;
   width: 100%;
+  /* making the change smoother when we hover(animation time)*/
   transition: all 0.4s;
 }
-
+/* making the pics bigger when we hover */
 .gallery-item img:hover {
   transform: scale(1.1);
 }
