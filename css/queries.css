@@ -105,14 +105,17 @@ instead, 1rem = 1em = 16px */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     transform: translateX(100%);
 
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.5s ease-in;
+    /* with display none we can't have animations. allow no transition at all */
+    /* display: none */
 
+    /* so there is another way which in 3 steps  */
     /* 1. hide element visually */
     opacity: 0;
     /* 2. make it unaccessable to mouse and keyboard */
@@ -129,7 +132,7 @@ instead, 1rem = 1em = 16px */
   .nav-open .icon-mobile-nav[name="close-outline"] {
     display: block;
   }
-  .icon-mobile-nav[name="menu-outline"] {
+  .nav-open .icon-mobile-nav[name="menu-outline"] {
     display: none;
   }
   .main-nav-list {
@@ -140,5 +143,94 @@ instead, 1rem = 1em = 16px */
   .main-nav-link:link,
   .main-nav-link:visited {
     font-size: 3rem;
+  }
+}
+
+/* below 704px (smaller tablets) */
+@media (max-width: 44em) {
+  .grid--3cols,
+  .grid--4cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .heading-secondary {
+    margin-bottom: 4.8rem;
+  }
+  .pricing-plan {
+    width: 100%;
+  }
+
+  .diets {
+    grid-column: 1/-1;
+    justify-self: center;
+  }
+  .grid--footer {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .logo-col,
+  .address-col {
+    grid-column: span 3;
+  }
+  .nav-col {
+    grid-row: 1;
+    grid-column: span 2;
+    margin-bottom: 3.2rem;
+  }
+}
+
+/* below 544px (phones) */
+@media (max-width: 34em) {
+  .grid {
+    row-gap: 4.8rem;
+  }
+
+  .grid--2cols,
+  .grid--3cols,
+  .grid--4cols {
+    grid-template-columns: 1fr;
+  }
+
+  .btn,
+  .btn:link,
+  .btn:visited {
+    padding: 2.4rem 1.6rem;
+  }
+  .hero {
+    padding: 0 3.2rem;
+  }
+  .section-hero {
+    padding: 2.4rem 0 6.4rem 0;
+  }
+  .hero-img {
+    width: 80%;
+  }
+  .logos img {
+    height: 1.2rem;
+  }
+  .step-img-box:nth-child(2) {
+    grid-row: 1;
+  }
+  .step-img-box:nth-child(6) {
+    grid-row: 5;
+  }
+  .step-img-box {
+    transform: translateY(2.4rem);
+  }
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+  .cta {
+    grid-template-columns: 1fr;
+  }
+  .cta-text-box {
+    padding: 3.2rem;
+  }
+  .cta-img-box {
+    height: 32rem;
+    grid-row: 1;
   }
 }
