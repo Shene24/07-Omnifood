@@ -13,6 +13,57 @@ btnNavEl.addEventListener("click", function () {
   headerEl.classList.toggle("nav-open");
 });
 
+//smooth scrolling animation
+const allLinks = document.querySelectorAll("a:link");
+allLinks.forEach(function (link) {
+  link.addEventListener("click", function (e) {
+    e.preventDefault(); //prevent default scrolling
+    const id = link.getAttribute("href");
+    //document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+
+    // scroll back to top
+    if (id === "#")
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+
+    // scroll to other links
+    if ((id !== "#") & id.startsWith("#")) {
+      const sectionEl = document.querySelector(id);
+      sectionEl.scrollIntoView({ behavior: "smooth" });
+    }
+
+    // close mobile navigation
+    if (link.classList.contains("main-nav-link"))
+      headerEl.classList.toggle("nav-open");
+  });
+});
+
+// Sticky navigation
+// intersection observer
+const sectionHeroEl = document.querySelector(".section-hero");
+const obs = new IntersectionObserver(
+  function (entries) {
+    const ent = entries[0];
+    console.log(ent);
+
+    if (!ent.isIntersecting) {
+      document.body.classList.add("sticky");
+    }
+    if (ent.isIntersecting) {
+      document.body.classList.remove("sticky");
+    }
+  },
+
+  {
+    root: null, //viewport
+    threshold: 0, // 0% of the section is visible
+    rootMargin: "-80px", // 80px above the section
+  }
+);
+obs.observe(sectionHeroEl);
+
 ///////////////////////////////////////////////////////////
 // Fixing flexbox gap property missing in some Safari versions
 function checkFlexGap() {
